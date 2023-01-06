@@ -29,18 +29,16 @@ def train(lr):
     epochs = 5
     images, labels = next(iter(trainloader))
     images.resize_(64, 784)
-    loss_func = []
+    loss_func=[]
 
     for e in range(epochs):
         running_loss = 0
         for images, labels in trainloader:
             optimizer.zero_grad()
-
             log_ps = model(images)
             loss = criterion(log_ps, labels)
             loss.backward()
             optimizer.step()
-
             running_loss += loss.item()
         loss_func.append(running_loss / len(trainloader))
     plt.plot(loss_func)
