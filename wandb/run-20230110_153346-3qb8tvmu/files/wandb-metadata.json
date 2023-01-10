@@ -1,0 +1,54 @@
+{
+    "os": "Windows-10-10.0.19041-SP0",
+    "python": "3.9.15",
+    "heartbeatAt": "2023-01-10T14:33:47.241826",
+    "startedAt": "2023-01-10T14:33:46.514459",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "train",
+        "--lr",
+        "1e-2"
+    ],
+    "state": "running",
+    "program": "C:\\Users\\Frede\\Documents\\GitHub\\MLOps\\main.py",
+    "codePath": "main.py",
+    "git": {
+        "remote": "https://github.com/Fuedyolo/MLOps.git",
+        "commit": "fd9a6eae174dccc643815bf8dbc3b27f67f1ee8a"
+    },
+    "email": "frederik.ommundsen@gmail.com",
+    "root": "C:/Users/Frede/Documents/GitHub/MLOps",
+    "host": "MSI",
+    "username": "Frede",
+    "executable": "C:\\Users\\Frede\\anaconda3\\envs\\myenv\\python.exe",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 2592.0,
+        "min": 0.0,
+        "max": 2592.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2592.0,
+            "min": 0.0,
+            "max": 2592.0
+        }
+    ],
+    "disk": {
+        "total": 933.0117149353027,
+        "used": 335.6750907897949
+    },
+    "gpu": "NVIDIA GeForce RTX 2060",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 2060",
+            "memory_total": 6442450944
+        }
+    ],
+    "memory": {
+        "total": 15.821517944335938
+    }
+}
