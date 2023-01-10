@@ -1,7 +1,8 @@
+from typing import Callable, List, Optional, Tuple, Union
+
 import torch
 import torch.nn.functional as F
 from torch import nn
-from typing import Callable, Optional, Tuple, Union, List
 
 
 class Network(nn.Module):

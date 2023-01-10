@@ -14,7 +14,6 @@ from model import MyAwesomeModel
 def cli():
     pass
 
-test ="asdfasdflasdfksadmflkasmdflkndsaflknadsflkasdpfojdsapofjsapofkpodskapofkpaosodfkposaodfk"
 
 @click.command()
 @click.option("--lr", default=1e-3, help="learning rate to use for training")
@@ -26,10 +25,9 @@ def train(lr):
     trainloader, _ = mnist()
     criterion = nn.NLLLoss()
     optimizer = optim.Adam(model.parameters(), lr=lr)
-    epochs = 5
+    epochs = 20
     images, labels = next(iter(trainloader))
-    images.resize_(64, 784)
-    loss_func=[]
+    loss_func = []
 
     for e in range(epochs):
         running_loss = 0
@@ -41,8 +39,16 @@ def train(lr):
             optimizer.step()
             running_loss += loss.item()
         loss_func.append(running_loss / len(trainloader))
+        print(f"Epoch {e+1} loss: {loss_func[e]}")
     plt.plot(loss_func)
+    plt.xlabel("Epochs")
+    plt.ylabel("Loss")
     plt.show()
+
+    checkpoint = {
+        "state_dict": model.state_dict(),
+    }
+    torch.save(checkpoint, "./checkpoint.pth")
 
 
 @click.command()
@@ -51,9 +57,31 @@ def evaluate(model_checkpoint):
     print("Evaluating until hitting the ceiling")
     print(model_checkpoint)
 
-    # TODO: Implement evaluation logic here
-    model = torch.load(model_checkpoint)
+    checkpoint = torch.load(model_checkpoint)
+    model = MyAwesomeModel()
+    model.load_state_dict(checkpoint["state_dict"])
     _, test_set = mnist()
+    criterion = nn.NLLLoss()
+    accuracy = 0
+    loss = 0
+    _, testloader = mnist()
+
+    for images, labels in testloader:
+        output = model.forward(images)
+
+        labels = labels.type(torch.LongTensor)
+        loss += criterion(output, labels).item()
+
+        ps = torch.exp(output)
+
+        temp = labels.data == ps.max(1)[1]
+
+        accuracy += temp.type_as(torch.FloatTensor()).mean()
+
+        print(
+            "Test Loss: {:.3f}.. ".format(loss / len(testloader)),
+            "Test Accuracy: {:.3f}".format(accuracy / len(testloader)),
+        )
 
 
 cli.add_command(train)

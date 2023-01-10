@@ -1,6 +1,6 @@
 import torch
 import torchvision.models as models
-from torch.profiler import profile, ProfilerActivity, tensorboard_trace_handler
+from torch.profiler import ProfilerActivity, profile, tensorboard_trace_handler
 
 #model = models.resnet18()
 model = models.resnet34()

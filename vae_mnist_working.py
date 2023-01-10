@@ -7,10 +7,10 @@ A simple implementation of Gaussian MLP Encoder and Decoder trained on MNIST
 import torch
 import torch.nn as nn
 import torchvision.transforms as transforms
+from torch.profiler import ProfilerActivity, profile, record_function
 from torch.utils.data import DataLoader
 from torchvision.datasets import MNIST
 from torchvision.utils import save_image
-from torch.profiler import profile, record_function, ProfilerActivity
 
 # Model Hyperparameters
 dataset_path = 'datasets'
@@ -152,4 +152,3 @@ with torch.no_grad():
     generated_images = decoder(noise)
     
 save_image(generated_images.view(batch_size, 1, 28, 28), 'generated_sample.png')
-
