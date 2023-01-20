@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 import torch
 from torch import nn, optim
 
-from data import mnist
-from model import MyAwesomeModel
+from src.data.data import mnist
+from models.model import MyAwesomeModel
 
 
 @click.group()

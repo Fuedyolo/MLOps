@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 import torch
 from torch import nn, optim
 from model import MyAwesomeModel
-from data import mnist
+from src.data.data import mnist
 
-def train(lr):
+def train(lr=0.001):
     print("Training day and night")
     print(lr)
     wandb.init(
@@ -51,3 +51,4 @@ def train(lr):
         "state_dict": model.state_dict(),
     }
     torch.save(checkpoint, "models/checkpoint.pth")
+    print('success')
